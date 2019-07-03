@@ -1,0 +1,15 @@
+<p>
+  presence works!
+</p>
+<ul class="list-group">
+  <li class="list-group-item" *ngFor ="let student of studentList" (click) = "marked()"
+   [ngClass]="{ 'bg-success': this.persence == true }">
+    <div>{{student.student_id}}</div>
+    <div>{{student.first_name}}</div>
+    <div>{{student.last_name}}</div>
+    <!-- <img src="src\app\image\child 2.jpg"/> -->
+  </li>
+</ul>
+
+ 
+

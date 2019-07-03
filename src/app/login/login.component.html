@@ -1,0 +1,27 @@
+<h1>Safe Jurney</h1>
+  <form #loginForm="ngForm">
+    <div class="form-group">
+      <div>הכנס מס' זהות</div>     
+      <input type="text" #userIdModel = "ngModel" [(ngModel)] ="userId" required minlength="9" maxlength="9" name ="userId">
+      <div *ngIf = "!userCodeFromServer" >
+          <div class="alert" *ngIf="userIdModel.errors && userIdModel.dirty && !checkValidation">
+            <span *ngIf="userIdModel.errors.required">שדה חובה</span> 
+            <span *ngIf="userIdModel.errors.minlength">שדה זה חיב להכיל 9 תווים</span>
+          </div>
+          <div *ngIf="!checkIdExists">מס' הזהות שהזנת אינו מופיע במערכת</div>
+          <input type="submit"(click)="checkPersonality()"/>
+      </div>      
+  <div *ngIf = "userCodeFromServer">
+      <div>לכניסה למערכת הכנס סיסמא</div>
+      <input type="password" #userCodeModel required [(ngModel)] ="userCode" name ="userCode"/> 
+      <br/>
+      <span *ngIf="userCodeModel.dirty && userCodeModel.errors.required">שדה חובה</span>
+      <span *ngIf="!checkCodeUser">הקוד שגוי</span> 
+      <br/>
+      <input type="submit" (click)="checkCodeAdmin()">
+  </div>
+</div>
+  </form>
+
+  
+

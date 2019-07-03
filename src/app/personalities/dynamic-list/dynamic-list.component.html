@@ -1,0 +1,16 @@
+<p>
+  dynamic-list works!
+</p>
+<table style="width:100%" >
+  <button (click) = "newPerson()">להוספה</button>
+  <tr>
+    <th *ngFor = "let property of properties">{{property}}</th>
+  </tr>
+  <tr *ngFor = "let person of personaliesList">
+    <td *ngFor = "let property of properties">{{person[property]}}</td>
+    <td><button (click) = "delete(person)">מחיקה</button>
+      <button (click) = "details(person)">פרטים</button>
+      <button (click) = "details(person)">עריכה</button></td>
+    </tr>
+</table>
+<app-student-details *ngIf = "flagDetails" [student] = "selectedPerson" (onSaveStudent) = "savePersonToList($event)"></app-student-details>

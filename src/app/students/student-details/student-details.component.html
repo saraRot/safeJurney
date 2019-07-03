@@ -1,0 +1,25 @@
+<form>
+  ת.ז<input name = "id" [(ngModel)]="student.student_id" value = "{{student.student_id}}"/>
+  <br/>
+  שם פרטי<input name = "first_name" [(ngModel)]="student.first_name" value = "{{student.first_name}}"/>
+  <br/>
+  שם משפחה<input name = "last_name" [(ngModel)]="student.last_name" value = "{{student.last_name}}"/>
+  <br/>
+  טלפון<input name = "phone" [(ngModel)]="student.phone" value = "{{student.phone}}"/>
+  <br/>
+  פלאפון<input name = "additional_phone" [(ngModel)]="student.additional_phone" value = "{{student.additional_phone}}"/>
+  <br/>
+  כתובת<input name = "student_address" [(ngModel)]="student.student_address" value = "{{student.student_address}}"/> 
+  <br/>
+  קוד שכונה<input name = "neighborhood_code" [(ngModel)]="student.neighborhood_code" value = "{{student.neighborhood_code}}"/>
+  <br/>
+  מס' תחנות להתראה מראש<input name = "num_station_warning" [(ngModel)]="student.num_station_warning" value = "{{student.num_station_warning}}"/> 
+  <br/>
+  קוד קבוצה<input name = "groups_code" [(ngModel)]="student.groups_code" value = "{{student.groups_code}}"/>
+  <br/>
+  קוד הסעה הלוך<input name = "transportation_forth_code" [(ngModel)]="student.transportation_forth_code" value = "{{student.transportation_forth_code}}"/>
+  <br/>
+  קוד הסעה חזור<input name = "transportation_return_code" [(ngModel)]="student.transportation_return_code" value = "{{student.transportation_return_code}}"/>
+  <br/>
+  <button type="submit" (click) = "saveStudent()">שמור</button>
+</form>
