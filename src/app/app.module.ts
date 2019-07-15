@@ -5,7 +5,7 @@ import { LenderAccessComponent } from './lender/lender-access/lender-access.comp
 import { PresenceComponent } from './lender/presence/presence.component';
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
-import { StudentHttpService } from './students/student-http.service';
+import { StudentHttpService } from './services/student-http.service';
 import { AppRoutingModule } from './app.routing.module';
 import { LenderModule } from './lender/lender.module';
 import { ParentModule } from './parent/parent.module';
@@ -15,6 +15,12 @@ import { LoginHttpService } from './login/login-http.service';
 import { RouterModule } from '@angular/router';
 import { DynamicListComponent } from './personalities/dynamic-list/dynamic-list.component';
 import { StudentDetailsComponent } from './students/student-details/student-details.component';
+import { AgmCoreModule } from '@agm/core';
+import { NavigateMapsComponent } from './lender/navigate-maps/navigate-maps.component';
+import { AgmDirectionModule } from 'agm-direction'; 
+import { AutocompleteComponent } from './autocomplete/autocomplete.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatGoogleMapsAutocompleteModule } from '@angular-material-extensions/google-maps-autocomplete';
 
 @NgModule({
      imports:
@@ -26,9 +32,14 @@ import { StudentDetailsComponent } from './students/student-details/student-deta
                RouterModule,
                LenderModule,
                ParentModule,
-               AdminModule
+               AdminModule,
+               AgmCoreModule.forRoot({apiKey: '', libraries: ["places"]}),
+               //AgmDirectionModule,
+               // BrowserAnimationsModule,
+               // MatGoogleMapsAutocompleteModule,
           ],
-     declarations: [AppComponent, LoginComponent],
+     declarations: [AppComponent, LoginComponent, AutocompleteComponent],
+    // exports: [AgmCoreModule, AgmDirectionModule],
      providers: [StudentHttpService, LoginHttpService],
      bootstrap: [AppComponent],
 })

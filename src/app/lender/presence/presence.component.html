@@ -2,14 +2,15 @@
   presence works!
 </p>
 <ul class="list-group">
-  <li class="list-group-item" *ngFor ="let student of studentList" (click) = "marked()"
-   [ngClass]="{ 'bg-success': this.persence == true }">
+  <li class="list-group-item" *ngFor ="let student of studentList" (click) = "marked(student)"
+  [ngClass]="{ 'disabled': student.persence == true}" [ngStyle]="{background: 'url(./assets/image/' + child2.jpg + ')'}">
     <div>{{student.student_id}}</div>
     <div>{{student.first_name}}</div>
     <div>{{student.last_name}}</div>
-    <!-- <img src="src\app\image\child 2.jpg"/> -->
+    <!-- <img src="assets/image/child 2.jpg"/> -->
   </li>
 </ul>
+<!-- C:\Users\user1\Downloads\IMG_4846.jpg -->
 
  
 

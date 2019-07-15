@@ -1,0 +1,17 @@
+<p>lender-details works!</p>
+<form>
+        <div *ngIf = "typeActivity!='הוספה'"> קוד תלמיד<input disabled value = "{{lender.lender_code}}"/></div>
+        ת.ז<input name = "id" [(ngModel)]="lender.lender_id" value = "{{lender.lender_id}}"/>
+        <br/>
+        שם פרטי<input name = "first_name" [(ngModel)]="lender.first_name" value = "{{lender.first_name}}"/>
+        <br/>
+        שם משפחה<input name = "last_name" [(ngModel)]="lender.last_name" value = "{{lender.last_name}}"/>
+        <br/>
+        פלאפון<input name = "phone" [(ngModel)]="lender.phone" value = "{{lender.phone}}"/>
+        <br/>
+        כתובת<input name = "lender_address" [(ngModel)]="lender.lender_address" value = "{{lender.lender_address}}"/> 
+        <br/>
+        קוד הסעה <input name = "transportation_code" [(ngModel)]="lender.transportation_code" value = "{{lender.transportation_code}}"/>
+        <br/>
+        <button *ngIf="typeActivity!='פרטים'" type="submit" (click) = "saveLender()">שמור</button>
+      </form>

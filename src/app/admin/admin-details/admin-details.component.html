@@ -1,0 +1,15 @@
+<p>admin-details works!</p>
+<form>
+        <div *ngIf = "typeActivity!='הוספה'"> קוד תלמיד<input disabled value = "{{admin.admin_code}}"/></div>
+        ת.ז<input name = "id" [(ngModel)]="admin.admin_id" value = "{{admin.admin_id}}"/>
+        <br/>
+        שם פרטי<input name = "first_name" [(ngModel)]="admin.first_name" value = "{{admin.first_name}}"/>
+        <br/>
+        שם משפחה<input name = "last_name" [(ngModel)]="admin.last_name" value = "{{admin.last_name}}"/>
+        <br/>
+        פלאפון<input name = "phone" [(ngModel)]="admin.phone" value = "{{admin.phone}}"/>
+        <br/>
+        כתובת<input name = "admin_address" [(ngModel)]="admin.admin_address" value = "{{admin.admin_address}}"/> 
+        <br/>
+        <button *ngIf="typeActivity!='פרטים'" type="submit" (click) = "saveAdmin()">שמור</button>
+      </form>

@@ -13,8 +13,8 @@ export class HttpServiceService {
     return this._http.get<any[]>("/api/"+personality);
   }
 
-  deletePersonality(personality: String, id: String): Observable<boolean> {
-    return this._http.delete<boolean>("/api/"+personality+"?id="+id);
+  deletePersonality(personality: String, code: number): Observable<boolean> {
+    return this._http.delete<boolean>("/api/"+personality+"?code="+code);
   }
 
 }

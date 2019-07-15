@@ -4,13 +4,17 @@
 <table style="width:100%" >
   <button (click) = "newPerson()">להוספה</button>
   <tr>
-    <th *ngFor = "let property of properties">{{property}}</th>
+    <th *ngFor = "let property of properties | slice:1">{{property}}</th>
   </tr>
   <tr *ngFor = "let person of personaliesList">
-    <td *ngFor = "let property of properties">{{person[property]}}</td>
+    <td *ngFor = "let property of properties | slice:1">{{person[property]}}</td>
     <td><button (click) = "delete(person)">מחיקה</button>
       <button (click) = "details(person)">פרטים</button>
-      <button (click) = "details(person)">עריכה</button></td>
+      <button (click) = "editPerson(person)">עריכה</button></td>
     </tr>
 </table>
-<app-student-details *ngIf = "flagDetails" [student] = "selectedPerson" (onSaveStudent) = "savePersonToList($event)"></app-student-details>
+<app-student-details *ngIf = "personality=='Student'&&flagDetails" [student] = "selectedPerson" [typeActivity] = "typeActivity" (onSaveStudent) = "savePersonToList($event)"></app-student-details>
+<app-lender-details *ngIf = "personality=='Lender'&&flagDetails" [lender] = "selectedPerson" [typeActivity] = "typeActivity" (onSaveLender) = "savePersonToList($event)"></app-lender-details>
+<app-transportation-details *ngIf = "personality=='Transportation'&&flagDetails" [transportation] = "selectedPerson" [typeActivity] = "typeActivity" (onSaveTransportation) = "savePersonToList($event)"></app-transportation-details>
+<app-driver-details *ngIf = "personality=='Driver'&&flagDetails" [driver] = "selectedPerson" [typeActivity] = "typeActivity" (onSaveDriver) = "savePersonToList($event)"></app-driver-details>
+<app-admin-details *ngIf = "personality=='Admin'&&flagDetails" [admin] = "selectedPerson" [typeActivity] = "typeActivity" (onSaveAdmin) = "savePersonToList($event)"></app-admin-details>

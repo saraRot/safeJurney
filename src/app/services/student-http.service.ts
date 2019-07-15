@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
 import { Observable } from 'rxjs';
-import {Student} from './student.model'
+import {Student} from '../students/student.model'
 
 @Injectable({
   providedIn: 'root'
@@ -15,14 +15,14 @@ export class StudentHttpService {
     return this._http.get<Student>("/api/Student?id="+id);
   }
   getStudentsByTranportationCode(code: number): Observable<Student[]> {
+    debugger;
     return this._http.get<Student[]>("/api/Student?code="+code);
   }
-  checkCodeTranspotation(code: number): Observable<boolean> {
-    debugger;
-    return this._http.get<boolean>("/api/transportation?code="+code);
-  }
+  // checkCodeTranspotation(code: number): Observable<boolean> {
+  //   debugger;
+  //   return this._http.get<boolean>("/api/transportation?code="+code);
+  // }
   updateStudent(student: Student): Observable<boolean> {
-    debugger;
     return this._http.post<boolean>("/api/Student", student);
   }
 }

@@ -9,7 +9,7 @@ export class MapService {
   constructor(private _http: HttpClient) { }
   
 //   getMap(): Observable<boolean> {
-//     return this._http.send<boolean>("https://maps.googleapis.com/maps/api/js?key=AIzaSyCyHUuPnj5y7LAejBWXFgau_jwPGWFKTZo");
+//     return this._http.send<boolean>("https://maps.googleapis.com/maps/api/js?key=");
 //   }
 //   map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
 //   var autocomplete = new google.maps.places.Autocomplete(routeFrom);
@@ -18,4 +18,4 @@ export class MapService {
 //   autocomplete1.bindTo('bounds', map);
 //   directionsDisplay.setMap(map);
 //   directionsDisplay.setPanel(document.getElementById("directions"));
-// }
+}

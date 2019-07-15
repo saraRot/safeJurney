@@ -1,0 +1,11 @@
+<p>transportation-details works!</p>
+<form>
+        <div *ngIf = "typeActivity!='הוספה'"> קוד הסעה<input disabled value = "{{transportation.transportation_code}}"/></div>
+        מספר רכב<input name = "id" [(ngModel)]="transportation.car_num" value = "{{transportation.car_num}}"/>
+        <br/>       
+         קוד נהג<input name = "driver_code" [(ngModel)]="transportation.driver_code" value = "{{transportation.driver_code}}"/>
+        <br/>
+         מספר רישוי<input name = "passenger_num" [(ngModel)]="transportation.passenger_num" value = "{{transportation.passenger_num}}"/>
+        <br/>
+        <button *ngIf="typeActivity!='פרטים'" type="submit" (click) = "saveTransportation()">שמור</button>
+      </form>

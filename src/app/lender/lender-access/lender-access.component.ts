@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { StudentHttpService } from 'src/app/students/student-http.service';
+import { Router } from '@angular/router';
+import { StudentHttpService } from 'src/app/services/student-http.service';
 import { Student } from 'src/app/students/student.model';
+import { TransportationHttpService } from 'src/app/services/transportation-http.service';
 
 
 @Component({
@@ -11,25 +12,24 @@ import { Student } from 'src/app/students/student.model';
 })
 export class LenderAccessComponent implements OnInit {
 
-  constructor( private _StudentHttp:StudentHttpService, private _router:Router) { }
+  constructor( private _TransportationHttp:TransportationHttpService, private _router:Router) { }
 
-  transportationCode: number = 4;
+  transportationCode: number;
+  transportationCodeList: number[];
+  //studentList: Student[];
   
   startJourney()
   {
-
+    this._router.navigate(['/lender/navigate-maps', { transportationCode: this.transportationCode}]);
   }
-  checkCodeTransportation()
-  {
-    debugger;
-    this._StudentHttp.checkCodeTranspotation(this.transportationCode).subscribe(data => 
-    {
-      if (data)
-        this._router.navigate(['/lender/presence', this.transportationCode]);
-    });
-  }
+   checkCodeTransportation()
+   {
+     this._router.navigate(['/lender/presence', { transportationCode: this.transportationCode}]);
+   }
   ngOnInit() {
-  
+    this._TransportationHttp.getAllTransportationCodes().subscribe(data => {
+      this.transportationCodeList = data;
+    });
   }
 
 }

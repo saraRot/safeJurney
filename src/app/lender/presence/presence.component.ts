@@ -1,8 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Student } from 'src/app/students/student.model';
 import{observable}from 'rxjs'
-import { StudentHttpService } from '../../students/student-http.service';
+import { StudentHttpService } from '../../services/student-http.service';
 import { ActivatedRoute } from '@angular/router';
+import { parse } from 'querystring';
 
 
 
@@ -15,31 +16,31 @@ import { ActivatedRoute } from '@angular/router';
 export class PresenceComponent implements OnInit {
 
   constructor( private _activatedRoute: ActivatedRoute, private _StudentHttp:StudentHttpService) { }
- // studentList: Student[]  = [
-  //   {id:"1111",firstName:"meir",lastName:"david"},
-  //   {id:"2222",firstName:"maya",lastName:"tofik", },
-  //   {id:"3333",firstName:"gad",lastName:"rot"},
-  //   {id:"4444",firstName:"dan",lastName:"man"},
-  //   {id:"5555",firstName:"yair",lastName:"levi"},
-  //   {id:"6666",firstName:"noa",lastName:"amar"}
 
-  // ];
   studentList: Student[] = [];
   transportationCode: number;
+  presenceStudentList: Student[] = [];
+  presenceFlag: boolean = false;
   
+  marked(selectedStudents: Student)
+  {
+    debugger;
+    this.presenceStudentList.push(selectedStudents);
+    selectedStudents.persence = true;
+  }
   
   ngOnInit() { 
     this._activatedRoute.paramMap.subscribe(params => {
-      debugger;
       if (params.has("transportationCode"))
-        debugger;
-        this.transportationCode = parseInt(params.get("transportationCode"));
-        console.log(this.transportationCode);
-    });
-    this._StudentHttp.getStudentsByTranportationCode(this.transportationCode).subscribe(data => 
       {
-         this.studentList = data;
-      });
+        this.transportationCode = parseInt(params.get("transportationCode"));
+        this._StudentHttp.getStudentsByTranportationCode(this.transportationCode).subscribe(data => 
+        {
+          this.studentList = data;
+        });
+      }
+    });
+    
   }
   
 }

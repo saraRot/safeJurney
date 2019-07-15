@@ -1,25 +1,59 @@
-<form>
-  ת.ז<input name = "id" [(ngModel)]="student.student_id" value = "{{student.student_id}}"/>
+<body>
+<form #formDetailsStudent = "ngForm">
+  <div *ngIf = "typeActivity!='הוספה'"> קוד תלמיד<input disabled value = "{{student.student_code}}" required/></div>
+  ת.ז<input name = "id" #studentIdModel="ngModel" [(ngModel)]="student.student_id" value = "{{student.student_id}}" required  minlength="9" maxlength="9" />
   <br/>
+  <div class="text-danger" *ngIf="!flagFormValid&&studentIdModel.errors">
+    <span *ngIf="studentIdModel.errors.required">שדה חובה</span> 
+    <span *ngIf="studentIdModel.errors.minlength">שדה זה חיב להכיל 9 תווים</span>
+  </div>
   שם פרטי<input name = "first_name" [(ngModel)]="student.first_name" value = "{{student.first_name}}"/>
   <br/>
-  שם משפחה<input name = "last_name" [(ngModel)]="student.last_name" value = "{{student.last_name}}"/>
+  שם משפחה<input name = "last_name" #lastNameModel="ngModel"  [(ngModel)]="student.last_name" value = "{{student.last_name}}" required/>
   <br/>
-  טלפון<input name = "phone" [(ngModel)]="student.phone" value = "{{student.phone}}"/>
+  <!-- <div class="text-danger" *ngIf="!flagFormValid&&lastNameModel.errors">
+    <span *ngIf="lastNameModel.errors.required">שדה חובה</span> 
+  </div> -->
+  טלפון<input name = "phone" #phoneModel = "ngModel" [(ngModel)]="student.phone" value = "{{student.phone}}" required  minlength="9" maxlength="10" />
   <br/>
-  פלאפון<input name = "additional_phone" [(ngModel)]="student.additional_phone" value = "{{student.additional_phone}}"/>
+  <!-- <div class="text-danger" *ngIf="!flagFormValid&&phoneModel.errors">
+    <span *ngIf="phoneModel.errors.required">שדה חובה</span> 
+    <span *ngIf="phoneModel.errors.minlength">שדה זה חיב להכיל לפחות 9 תווים</span>
+  </div> -->
+  פלאפון<input name = "additional_phone" [(ngModel)]="student.additional_phone" value = "{{student.additional_phone}}" minlength="9" maxlength="10"/>
   <br/>
-  כתובת<input name = "student_address" [(ngModel)]="student.student_address" value = "{{student.student_address}}"/> 
+  כתובת
+  <div class="form-group">
+    <input  name = "student_address" [(ngModel)]="student.student_address" value = "{{student.student_address}}" required placeholder="search for location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search>
+  </div>
+  <!-- <input name = "student_address" [(ngModel)]="student.student_address" value = "{{student.student_address}}" required/>  -->
   <br/>
-  קוד שכונה<input name = "neighborhood_code" [(ngModel)]="student.neighborhood_code" value = "{{student.neighborhood_code}}"/>
+  קוד שכונה<input name = "neighborhood_code" #neighborhoodCodeModel = "ngModel" [(ngModel)]="student.neighborhood_code" value = "{{student.neighborhood_code}}" required/>
   <br/>
+  <!-- <div class="text-danger" *ngIf="!flagFormValid&&neighborhoodCodeModel.errors">
+    <span *ngIf="neighborhoodCodeModel.errors.required">שדה חובה</span> 
+  </div> -->
   מס' תחנות להתראה מראש<input name = "num_station_warning" [(ngModel)]="student.num_station_warning" value = "{{student.num_station_warning}}"/> 
   <br/>
-  קוד קבוצה<input name = "groups_code" [(ngModel)]="student.groups_code" value = "{{student.groups_code}}"/>
+  קוד קבוצה<input name = "groups_code" [(ngModel)]="student.groups_code" value = "{{student.groups_code}}" required/>
   <br/>
-  קוד הסעה הלוך<input name = "transportation_forth_code" [(ngModel)]="student.transportation_forth_code" value = "{{student.transportation_forth_code}}"/>
+  קוד הסעה הלוך<input *ngIf = "typeActivity=='פרטים'" name = "transportation_forth_code" [(ngModel)]="student.transportation_forth_code" value = "{{student.transportation_forth_code}}"/>
+  <select  class="form-control" *ngIf = "typeActivity!='פרטים'" type="number" [(ngModel)] ="transportation_forth_code" #transportationForthCodeModel = "ngModel" name ="transportation_forth_code" required>
+      <option *ngFor = "let transportationCode of transportationCodeList" [attr.selected]="student.transportation_return_code==transportationCode? 'selected' : null">
+        {{transportationCode}}</option>
+    </select>
   <br/>
-  קוד הסעה חזור<input name = "transportation_return_code" [(ngModel)]="student.transportation_return_code" value = "{{student.transportation_return_code}}"/>
+  <!-- <div class="text-danger" *ngIf="!flagFormValid&&transportationForthCodeModel.errors">
+    <span *ngIf="neighborhoodCodeModel.errors.required">שדה חובה</span> 
+  </div> -->
+  קוד הסעה חזור<input *ngIf = "typeActivity=='פרטים'" name = "transportation_return_code" [(ngModel)]="student.transportation_return_code" value = "{{student.transportation_return_code}}" required/>
+  <select  class="form-control" *ngIf = "typeActivity!='פרטים'" type="number" [(ngModel)] ="transportation_return_code"  name ="transportation_return_code">
+    <option *ngFor = "let transportationCode of transportationCodeList" [attr.selected]="student.transportation_return_code==transportationCode? 'selected' : null">
+      {{transportationCode}}</option>
+  </select>
   <br/>
-  <button type="submit" (click) = "saveStudent()">שמור</button>
+  <button  *ngIf="typeActivity!='פרטים'" type="submit" (click) = "saveStudent()">שמור</button>
 </form>
+</body>
+
+

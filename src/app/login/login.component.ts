@@ -21,11 +21,10 @@ constructor(private _LoginHttp: LoginHttpService, private _router:Router) {}
   //אם הוזן מספר זהות קיים מנווט ואם מדובר במנהל מחזיר בנוסף לסטטוס גם סיסמא
   checkPersonality()
   {
-    if(this.userId.length<9)
+    if(this.userId.length < 9)
       this.checkValidation = false;
     else
     {
-      debugger;
       this._LoginHttp.getStatusUser(this.userId).subscribe(data =>
       {
         if (data.length == 0)
@@ -51,7 +50,7 @@ constructor(private _LoginHttp: LoginHttpService, private _router:Router) {}
     if (this.userCodeFromServer == this.userCode)
        this._router.navigate(['/admin', this.userId]);
     else
-    this.checkCodeUser=false;
+       this.checkCodeUser=false;
   }
 
   ngOnInit() {

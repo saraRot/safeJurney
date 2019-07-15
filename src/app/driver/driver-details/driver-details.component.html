@@ -1,0 +1,15 @@
+<p>driver-details works!</p>
+<form>
+        <div *ngIf = "typeActivity!='הוספה'"> קוד תלמיד<input disabled value = "{{driver.driver_code}}"/></div>
+        ת.ז<input name = "id" [(ngModel)]="driver.driver_id" value = "{{driver.driver_id}}"/>
+        <br/>
+        שם פרטי<input name = "first_name" [(ngModel)]="driver.first_name" value = "{{driver.first_name}}"/>
+        <br/>
+        שם משפחה<input name = "last_name" [(ngModel)]="driver.last_name" value = "{{driver.last_name}}"/>
+        <br/>
+        פלאפון<input name = "phone" [(ngModel)]="driver.phone" value = "{{driver.phone}}"/>
+        <br/>
+        כתובת<input name = "driver_address" [(ngModel)]="driver.driver_address" value = "{{driver.driver_address}}"/> 
+        <br/>
+        <button *ngIf="typeActivity!='פרטים'" type="submit" (click) = "saveDriver()">שמור</button>
+      </form>

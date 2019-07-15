@@ -1,5 +1,5 @@
 export class Student{
-    student_code?:number;
+    student_code:number;
     student_id:string;
     first_name?:string;
     last_name:string;

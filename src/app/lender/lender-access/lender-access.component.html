@@ -1,14 +1,18 @@
 <form class="center">
 <div class="form-group">
-  <div >הכנס קוד הסעה</div> 
-   <input type="number" name = "transportation_code"/>
+  <div >בחר קוד הסעה</div> 
+   <select class="form-control" type="number" [(ngModel)] ="transportationCode"  name ="transportationCode">
+     <option *ngFor = "let transportationCode of transportationCodeList">
+       {{transportationCode}}</option>
+   </select>
     <br/>    
-<button class="btn"  (click) = "startJourney()">
-        <a class="btn"  routerLink = ""  routerLinkActivate="active">התחל נסיעה</a> 
+<button class="btn" (click) = "startJourney()">
+    <a class="btn" routerLink = "/lender/navigate-maps" routerLinkActivate="active">התחל נסיעה</a> 
 </button>
 <br/>
-<button class="btn"  (click) = "checkCodeTransportation()">נוכחות תלמידים
- <!-- <a class="btn"  routerLink = "/lender/presence"  routerLinkActivate="active">נוכחות תלמידים</a>  -->
+<button class="btn" (click) = "checkCodeTransportation()"> 
+  <a class="btn">נוכחות תלמידים</a> 
+  <!-- routerLink = "/lender/presence/{{transportationCode}}"  routerLinkActivate="active" -->
 </button>
 </div>
 </form>

@@ -1,4 +1,6 @@
-body{
-    z-index: auto;
-
+body {
+    z-index: 20;
+    position: absolute;
+    border: 5px, solid, black;
+    width: 400px;
 }

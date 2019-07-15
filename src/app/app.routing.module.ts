@@ -5,6 +5,7 @@ import { LoginComponent } from './login/login.component';
 import { LenderModule } from './lender/lender.module';
 import { ParentModule } from './parent/parent.module';
 import { AdminModule } from './admin/admin.module';
+import { NavigateMapsComponent } from './lender/navigate-maps/navigate-maps.component';
 
 
 export const APP_ROUTES: Routes= [
